@@ -12,13 +12,4 @@ create table ipdr
 	domain varchar(255) null
 );
 ````
-
-python Task_A.py 
-
-
-export FLASK_APP=Task_B.py
-(python3.7_wanderly_vr) Ferdous-MacBook-Pro:set-1 ferdouswahid$ flask run
-
-export FLASK_APP=Task_B.py
-python -m flask run
-python -m flask run
+then export the data into that table then run the solution.sql
