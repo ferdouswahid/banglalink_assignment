@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+  web_server:
+    container_name: app_nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    networks:
+      default:
+    ports:
+      - 85:80
+    depends_on:
+      - api
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+#    image: user/image name:latest
+    container_name: task-c_api
+    networks:
+      default:
+    volumes:
+     - ./:/var/www/app
+     #- ../input.txt:/var/www/app/input.txt
+    ports:
+      - "5010:5000"
+
+  api-dev:
+    build:
+      context: .
+      dockerfile: DockerfileDev
+    container_name: task-c_api_dev
+    networks:
+      default:
+    volumes:
+     - ./:/var/www/app
+    ports:
+      - "5011:5000"
+    command: >
+      sh -c "python Task_C.py"
+
+networks:
+  default:

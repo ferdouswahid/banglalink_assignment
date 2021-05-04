@@ -1,0 +1,6 @@
+FROM python:3.6
+RUN mkdir /var/www/app/ -p
+WORKDIR /var/www/app/
+ADD .. /var/www/app/
+RUN pip3 install -r requirements.txt
+CMD [ "uwsgi", "--ini", "app.ini" ]
